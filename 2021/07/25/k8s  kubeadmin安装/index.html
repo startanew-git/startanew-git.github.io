@@ -1,0 +1,636 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="JAVA" href="http://www.startanew.cn/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="JAVA" href="http://www.startanew.cn/atom.xml" />
+<link rel="alternate" type="application/json" title="JAVA" href="http://www.startanew.cn/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="other" />
+
+
+<link rel="canonical" href="http://www.startanew.cn/2021/07/25/k8s%20%20kubeadmin%E5%AE%89%E8%A3%85/">
+
+
+
+  <title>
+k8s kubeadmin安装 - 运维 |
+小小程序员 = JAVA = startanew Blog</title>
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">k8s kubeadmin安装
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2021-07-25 17:09:18">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2021-07-25T17:09:18+08:00">2021-07-25</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>7.8k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>7 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">小小程序员</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://cdn.jsdelivr.net/gh/zjzbury/images@main/essay/u=2746494773,2497161018&fm=26&fmt=auto&gp=0.1w04k0ps919c.webp">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="item" rel="index" title="分类于 运维"><span itemprop="name">运维</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://www.startanew.cn/2021/07/25/k8s%20%20kubeadmin%E5%AE%89%E8%A3%85/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="startanew">
+    <meta itemprop="description" content="startanew Blog, 爱编程，爱生活">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="JAVA">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h5 id="集群架构-学习记录"><a class="markdownIt-Anchor" href="#集群架构-学习记录">#</a> 集群架构  (学习记录)</h5>
+<blockquote>
+<p>一个 master 一个 node<br>
+192.168.31.1 master<br>
+192.168.31.2 node</p>
+</blockquote>
+<h5 id="基础环境设置"><a class="markdownIt-Anchor" href="#基础环境设置">#</a> 基础环境设置</h5>
+<blockquote>
+<ol>
+<li>设置主机名</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">主机ip:192.168.31.1</span></span><br><span class="line">hostnamectl set-hostname master</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">主机ip:192.168.31.2</span></span><br><span class="line">hostnamectl set-hostname node</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="2">
+<li>关闭防火墙和 selinux</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line">setenforce 0</span><br><span class="line">sed -i &quot;s/SELINUX=enforcing/SELINUX=disabled/g&quot; /etc/selinux/config</span><br><span class="line">swapoff -a &amp;&amp; sed -i &#x27;/ swap / s/^\(.*\)$/#\1/g&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="3">
+<li>设置 yum 源</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo  http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">wget -O /etc/yum.repos.d/epel.repo  http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="4">
+<li>常用工具安装</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget net-tools telnet tree nmap sysstat lrzsz dos2unix bind-utils -y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="5">
+<li>安装 docker</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wget -O /etc/yum.repos.d/docker-ce.repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">yum install -y docker-ce</span><br><span class="line"></span><br><span class="line">vim /etc/docker/daemon.json</span><br><span class="line"><span class="meta">#</span><span class="bash">设置个人镜像仓库</span></span><br><span class="line">&quot;insecure-registries&quot;: [&quot;仓库地址&quot;]</span><br><span class="line"><span class="meta">#</span><span class="bash">  开启docker</span></span><br><span class="line"> systemctl start docker ; systemctl enable docker</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="6">
+<li>调整内核参数</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">modprobe br_netfilter</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF&gt; kubernetes.conf </span><br><span class="line">net.bridge.bridge-nf-call-iptables=1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables=1</span><br><span class="line">net.ipv4.ip_forward=1</span><br><span class="line">net.ipv4.tcp_tw_recycle=0</span><br><span class="line">vm.swappiness=0 # 禁止使用 swap 空间，只有当系统 OOM 时才允许使用它</span><br><span class="line">vm.overcommit_memory=1 # 不检查物理内存是否够用</span><br><span class="line">vm.panic_on_oom=0 # 开启 OOM</span><br><span class="line">fs.inotify.max_user_instances=8192</span><br><span class="line">fs.inotify.max_user_watches=1048576</span><br><span class="line">fs.file-max=52706963</span><br><span class="line">fs.nr_open=52706963</span><br><span class="line">net.ipv6.conf.all.disable_ipv6=1</span><br><span class="line">net.netfilter.nf_conntrack_max=2310720</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">cp kubernetes.conf /etc/sysctl.d/kubernetes.conf</span><br><span class="line"></span><br><span class="line">sysctl -p /etc/sysctl.d/kubernetes.conf</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="7">
+<li>调整系统时区</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置系统时区为 中国/上海</span></span><br><span class="line">timedatectl set-timezone Asia/Shanghai</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将当前的 UTC 时间写入硬件时钟</span></span><br><span class="line">timedatectl set-local-rtc 0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启依赖于系统时间的服务</span></span><br><span class="line">systemctl restart rsyslog</span><br><span class="line">systemctl restart crond</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="8">
+<li>kube-proxy 开启 ipvs 的前置条件</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF&gt; /etc/sysconfig/modules/ipvs.modules </span><br><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">modprobe -- ip_vs</span><br><span class="line">modprobe -- ip_vs_rr</span><br><span class="line">modprobe -- ip_vs_wrr</span><br><span class="line">modprobe -- ip_vs_sh</span><br><span class="line">modprobe -- nf_conntrack_ipv4</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">chmod 755 /etc/sysconfig/modules/ipvs.modules &amp;&amp; bash /etc/sysconfig/modules/ipvs.modules &amp;&amp; lsmod | grep -e ip_vs -e nf_conntrack_ipv4</span><br></pre></td></tr></table></figure>
+<h5 id="安装-kubeadm"><a class="markdownIt-Anchor" href="#安装-kubeadm">#</a> 安装 Kubeadm</h5>
+<blockquote>
+<ol>
+<li>安装 Kubeadm</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br><span class="line">setenforce 0</span><br><span class="line">yum install -y kubelet kubeadm kubectl &amp;&amp; systemctl enable kubelet</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="2">
+<li>初始化主节点</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --apiserver-advertise-address=192.168.31.1 --image-repository registry.aliyuncs.com/google_containers --kubernetes-version v1.21.1 --service-cidr=10.96.0.0/12 --pod-network-cidr=10.244.0.0/16</span><br><span class="line"></span><br><span class="line">mkdir -p $HOME/.kube</span><br><span class="line"></span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line"></span><br><span class="line">sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="3">
+<li>加入主节点</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 192.168.31.1:6443 --token 2f5xrv.mhbj3aq4i75ytkri  \</span><br><span class="line">        --discovery-token-ca-cert-hash  sha256:da21afbb6a2eefce583ff3c8750330eef679d0874df15cbcb737a83241e98d60 </span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="4">
+<li>部署 flannel 网络</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span><br><span class="line"></span><br><span class="line">cat kube-flannel.yml</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">apiVersion: policy/v1beta1</span><br><span class="line">kind: PodSecurityPolicy</span><br><span class="line">metadata:</span><br><span class="line">  name: psp.flannel.unprivileged</span><br><span class="line">  annotations:</span><br><span class="line">    seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default</span><br><span class="line">    seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default</span><br><span class="line">    apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default</span><br><span class="line">    apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default</span><br><span class="line">spec:</span><br><span class="line">  privileged: false</span><br><span class="line">  volumes:</span><br><span class="line">  - configMap</span><br><span class="line">  - secret</span><br><span class="line">  - emptyDir</span><br><span class="line">  - hostPath</span><br><span class="line">  allowedHostPaths:</span><br><span class="line">  - pathPrefix: &quot;/etc/cni/net.d&quot;</span><br><span class="line">  - pathPrefix: &quot;/etc/kube-flannel&quot;</span><br><span class="line">  - pathPrefix: &quot;/run/flannel&quot;</span><br><span class="line">  readOnlyRootFilesystem: false</span><br><span class="line"><span class="meta">  #</span><span class="bash"> Users and groups</span></span><br><span class="line">  runAsUser:</span><br><span class="line">    rule: RunAsAny</span><br><span class="line">  supplementalGroups:</span><br><span class="line">    rule: RunAsAny</span><br><span class="line">  fsGroup:</span><br><span class="line">    rule: RunAsAny</span><br><span class="line"><span class="meta">  #</span><span class="bash"> Privilege Escalation</span></span><br><span class="line">  allowPrivilegeEscalation: false</span><br><span class="line">  defaultAllowPrivilegeEscalation: false</span><br><span class="line"><span class="meta">  #</span><span class="bash"> Capabilities</span></span><br><span class="line">  allowedCapabilities: [&#x27;NET_ADMIN&#x27;, &#x27;NET_RAW&#x27;]</span><br><span class="line">  defaultAddCapabilities: []</span><br><span class="line">  requiredDropCapabilities: []</span><br><span class="line"><span class="meta">  #</span><span class="bash"> Host namespaces</span></span><br><span class="line">  hostPID: false</span><br><span class="line">  hostIPC: false</span><br><span class="line">  hostNetwork: true</span><br><span class="line">  hostPorts:</span><br><span class="line">  - min: 0</span><br><span class="line">    max: 65535</span><br><span class="line"><span class="meta">  #</span><span class="bash"> SELinux</span></span><br><span class="line">  seLinux:</span><br><span class="line">    # SELinux is unused in CaaSP</span><br><span class="line">    rule: &#x27;RunAsAny&#x27;</span><br><span class="line">---</span><br><span class="line">kind: ClusterRole</span><br><span class="line">apiVersion: rbac.authorization.k8s.io/v1</span><br><span class="line">metadata:</span><br><span class="line">  name: flannel</span><br><span class="line">rules:</span><br><span class="line">- apiGroups: [&#x27;extensions&#x27;]</span><br><span class="line">  resources: [&#x27;podsecuritypolicies&#x27;]</span><br><span class="line">  verbs: [&#x27;use&#x27;]</span><br><span class="line">  resourceNames: [&#x27;psp.flannel.unprivileged&#x27;]</span><br><span class="line">- apiGroups:</span><br><span class="line">  - &quot;&quot;</span><br><span class="line">  resources:</span><br><span class="line">  - pods</span><br><span class="line">  verbs:</span><br><span class="line">  - get</span><br><span class="line">- apiGroups:</span><br><span class="line">  - &quot;&quot;</span><br><span class="line">  resources:</span><br><span class="line">  - nodes</span><br><span class="line">  verbs:</span><br><span class="line">  - list</span><br><span class="line">  - watch</span><br><span class="line">- apiGroups:</span><br><span class="line">  - &quot;&quot;</span><br><span class="line">  resources:</span><br><span class="line">  - nodes/status</span><br><span class="line">  verbs:</span><br><span class="line">  - patch</span><br><span class="line">---</span><br><span class="line">kind: ClusterRoleBinding</span><br><span class="line">apiVersion: rbac.authorization.k8s.io/v1</span><br><span class="line">metadata:</span><br><span class="line">  name: flannel</span><br><span class="line">roleRef:</span><br><span class="line">  apiGroup: rbac.authorization.k8s.io</span><br><span class="line">  kind: ClusterRole</span><br><span class="line">  name: flannel</span><br><span class="line">subjects:</span><br><span class="line">- kind: ServiceAccount</span><br><span class="line">  name: flannel</span><br><span class="line">  namespace: kube-system</span><br><span class="line">---</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: ServiceAccount</span><br><span class="line">metadata:</span><br><span class="line">  name: flannel</span><br><span class="line">  namespace: kube-system</span><br><span class="line">---</span><br><span class="line">kind: ConfigMap</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  name: kube-flannel-cfg</span><br><span class="line">  namespace: kube-system</span><br><span class="line">  labels:</span><br><span class="line">    tier: node</span><br><span class="line">    app: flannel</span><br><span class="line">data:</span><br><span class="line">  cni-conf.json: |</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;name&quot;: &quot;cbr0&quot;,</span><br><span class="line">      &quot;cniVersion&quot;: &quot;0.3.1&quot;,</span><br><span class="line">      &quot;plugins&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;type&quot;: &quot;flannel&quot;,</span><br><span class="line">          &quot;delegate&quot;: &#123;</span><br><span class="line">            &quot;hairpinMode&quot;: true,</span><br><span class="line">            &quot;isDefaultGateway&quot;: true</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;type&quot;: &quot;portmap&quot;,</span><br><span class="line">          &quot;capabilities&quot;: &#123;</span><br><span class="line">            &quot;portMappings&quot;: true</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  net-conf.json: |</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;Network&quot;: &quot;10.244.0.0/16&quot;,</span><br><span class="line">      &quot;Backend&quot;: &#123;</span><br><span class="line">        &quot;Type&quot;: &quot;vxlan&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">---</span><br><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: DaemonSet</span><br><span class="line">metadata:</span><br><span class="line">  name: kube-flannel-ds</span><br><span class="line">  namespace: kube-system</span><br><span class="line">  labels:</span><br><span class="line">    tier: node</span><br><span class="line">    app: flannel</span><br><span class="line">spec:</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: flannel</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        tier: node</span><br><span class="line">        app: flannel</span><br><span class="line">    spec:</span><br><span class="line">      affinity:</span><br><span class="line">        nodeAffinity:</span><br><span class="line">          requiredDuringSchedulingIgnoredDuringExecution:</span><br><span class="line">            nodeSelectorTerms:</span><br><span class="line">            - matchExpressions:</span><br><span class="line">              - key: kubernetes.io/os</span><br><span class="line">                operator: In</span><br><span class="line">                values:</span><br><span class="line">                - linux</span><br><span class="line">      hostNetwork: true</span><br><span class="line">      priorityClassName: system-node-critical</span><br><span class="line">      tolerations:</span><br><span class="line">      - operator: Exists</span><br><span class="line">        effect: NoSchedule</span><br><span class="line">      serviceAccountName: flannel</span><br><span class="line">      initContainers:</span><br><span class="line">      - name: install-cni</span><br><span class="line">        image: quay.io/coreos/flannel:v0.14.0</span><br><span class="line">        command:</span><br><span class="line">        - cp</span><br><span class="line">        args:</span><br><span class="line">        - -f</span><br><span class="line">        - /etc/kube-flannel/cni-conf.json</span><br><span class="line">        - /etc/cni/net.d/10-flannel.conflist</span><br><span class="line">        volumeMounts:</span><br><span class="line">        - name: cni</span><br><span class="line">          mountPath: /etc/cni/net.d</span><br><span class="line">        - name: flannel-cfg</span><br><span class="line">          mountPath: /etc/kube-flannel/</span><br><span class="line">      containers:</span><br><span class="line">      - name: kube-flannel</span><br><span class="line">        image: quay.io/coreos/flannel:v0.14.0</span><br><span class="line">        command:</span><br><span class="line">        - /opt/bin/flanneld</span><br><span class="line">        args:</span><br><span class="line">        - --ip-masq</span><br><span class="line">        - --kube-subnet-mgr</span><br><span class="line">        resources:</span><br><span class="line">          requests:</span><br><span class="line">            cpu: &quot;100m&quot;</span><br><span class="line">            memory: &quot;50Mi&quot;</span><br><span class="line">          limits:</span><br><span class="line">            cpu: &quot;100m&quot;</span><br><span class="line">            memory: &quot;50Mi&quot;</span><br><span class="line">        securityContext:</span><br><span class="line">          privileged: false</span><br><span class="line">          capabilities:</span><br><span class="line">            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]</span><br><span class="line">        env:</span><br><span class="line">        - name: POD_NAME</span><br><span class="line">          valueFrom:</span><br><span class="line">            fieldRef:</span><br><span class="line">              fieldPath: metadata.name</span><br><span class="line">        - name: POD_NAMESPACE</span><br><span class="line">          valueFrom:</span><br><span class="line">            fieldRef:</span><br><span class="line">              fieldPath: metadata.namespace</span><br><span class="line">        volumeMounts:</span><br><span class="line">        - name: run</span><br><span class="line">          mountPath: /run/flannel</span><br><span class="line">        - name: flannel-cfg</span><br><span class="line">          mountPath: /etc/kube-flannel/</span><br><span class="line">      volumes:</span><br><span class="line">      - name: run</span><br><span class="line">        hostPath:</span><br><span class="line">          path: /run/flannel</span><br><span class="line">      - name: cni</span><br><span class="line">        hostPath:</span><br><span class="line">          path: /etc/cni/net.d</span><br><span class="line">      - name: flannel-cfg</span><br><span class="line">        configMap:</span><br><span class="line">          name: kube-flannel-cfg</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol start="5">
+<li>搭建 ingress 环境</li>
+</ol>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir ingress-controller</span><br><span class="line">cd ingress-controller/</span><br><span class="line">wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml</span><br><span class="line">wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/baremetal/service-nodeport.yaml</span><br><span class="line">kubectl apply -f ./</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看ingress-nginx</span></span><br><span class="line">kubectl get pod -n ingress-nginx</span><br></pre></td></tr></table></figure>
+      <div class="tags">
+          <a href="/tags/other/" rel="tag"><i class="ic i-tag"></i> other</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2021-11-21 18:22:08" itemprop="dateModified" datetime="2021-11-21T18:22:08+08:00">2021-11-21</time>
+  </span>
+  <span id="2021/07/25/k8s  kubeadmin安装/" class="item leancloud_visitors" data-flag-title="k8s kubeadmin安装" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>startanew <i class="ic i-at"><em>@</em></i>JAVA
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://www.startanew.cn/2021/07/25/k8s%20%20kubeadmin%E5%AE%89%E8%A3%85/" title="k8s kubeadmin安装">http://www.startanew.cn/2021/07/25/k8s  kubeadmin安装/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2021/07/25/%E8%87%AA%E5%BB%BAdns/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;zjzbury&#x2F;images@main&#x2F;essay&#x2F;dns.5z5vtggooa00.jpg" title="自建dns">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 运维</span>
+  <h3>自建dns</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2021/07/25/k8s%20%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;zjzbury&#x2F;images@main&#x2F;essay&#x2F;u&#x3D;2746494773,2497161018&amp;fm&#x3D;26&amp;fmt&#x3D;auto&amp;gp&#x3D;0.1w04k0ps919c.webp" title="k8s 二进制安装">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 运维</span>
+  <h3>k8s 二进制安装</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text"> 集群架构  (学习记录)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text"> 基础环境设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-kubeadm"><span class="toc-number">3.</span> <span class="toc-text"> 安装 Kubeadm</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2021/07/25/%E8%87%AA%E5%BB%BAdns/" rel="bookmark" title="自建dns">自建dns</a></li><li><a href="/2021/07/25/%E5%AE%89%E8%A3%85harbor/" rel="bookmark" title="安装harbor">安装harbor</a></li><li><a href="/2021/07/25/k8s%20%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/" rel="bookmark" title="k8s 二进制安装">k8s 二进制安装</a></li><li class="active"><a href="/2021/07/25/k8s%20%20kubeadmin%E5%AE%89%E8%A3%85/" rel="bookmark" title="k8s kubeadmin安装">k8s kubeadmin安装</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="startanew"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">startanew</p>
+  <div class="description" itemprop="description">爱编程，爱生活</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">89</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">7</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">23</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3pqemJ1cnk=" title="https:&#x2F;&#x2F;github.com&#x2F;zjzbury"><i class="ic i-github"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPTEzMDczMjU3OTM=" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;1307325793"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item email" data-url="bWFpbHRvOnpqenN0YXJ0YW5ld0AxNjNjb20=" title="mailto:zjzstartanew@163com"><i class="ic i-envelope"></i></span>
+      <span class="exturl item douban" data-url="aHR0cHM6Ly93d3cuZG91YmFuLmNvbS9wZW9wbGUvMjIzOTg5NzEyLw==" title="https:&#x2F;&#x2F;www.douban.com&#x2F;people&#x2F;223989712&#x2F;"><i class="ic i-douban"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-clipboard"></i>其他</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/tool/" rel="section"><i class="ic i-magic"></i>收藏</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/resources/" rel="section"><i class="ic i-cloud-music"></i>资源</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/images/" rel="section"><i class="ic i-heart"></i>图片</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2021/07/25/%E8%87%AA%E5%BB%BAdns/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2021/07/25/k8s%20%20%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E8%A3%85/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/HumanResourceManagement/" title="分类于 人力资源管理">人力资源管理</a>
+</div>
+
+    <span><a href="/2020/10/08/%E5%B7%A5%E4%BD%9C%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C%E5%8F%8A%E5%BA%94%E7%94%A8/" title="第六章 工作分析结果及应用">第六章 工作分析结果及应用</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E8%BF%90%E7%BB%B4/" title="分类于 运维">运维</a>
+</div>
+
+    <span><a href="/2021/07/25/%E8%87%AA%E5%BB%BAdns/" title="自建dns">自建dns</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/HumanResourceManagement/" title="分类于 人力资源管理">人力资源管理</a>
+</div>
+
+    <span><a href="/2020/10/08/%E5%91%98%E5%B7%A5%E5%85%B3%E7%B3%BB%E7%AE%A1%E7%90%86%E6%A6%82%E8%AE%BA/" title="第一章 员工关系管理概论">第一章 员工关系管理概论</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/programming/" title="分类于 编程">编程</a>
+</div>
+
+    <span><a href="/2020/07/12/redis%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" title="redis基本用法">redis基本用法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/programming/" title="分类于 编程">编程</a>
+</div>
+
+    <span><a href="/2020/07/13/docker-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="docker 基础入门">docker 基础入门</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/programming/" title="分类于 编程">编程</a>
+</div>
+
+    <span><a href="/2020/07/13/%E5%AE%89%E5%8D%93%E6%9C%8D%E5%8A%A1%E9%87%8C%E7%9B%91%E5%90%AC%E6%8C%89%E9%92%AE/" title="安卓服务里监听按钮">安卓服务里监听按钮</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/programming/" title="分类于 编程">编程</a>
+</div>
+
+    <span><a href="/2021/04/01/java-Jni/" title="Jni">Jni</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/HumanResourceManagement/" title="分类于 人力资源管理">人力资源管理</a>
+</div>
+
+    <span><a href="/2020/10/08/%E5%8A%B3%E5%8A%A8%E4%BA%89%E8%AE%AE%E7%AE%A1%E7%90%86/" title="第十章 劳动争议管理">第十章 劳动争议管理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/programming/" title="分类于 编程">编程</a>
+</div>
+
+    <span><a href="/2020/07/13/%E6%A0%BC%E6%9E%97%E5%A8%81%E6%B2%BB%E6%97%B6%E9%97%B4%E8%BD%AC%E6%97%B6%E9%97%B4%E6%88%B3/" title="格林威治时间转时间戳">格林威治时间转时间戳</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/programming/" title="分类于 编程">编程</a>
+</div>
+
+    <span><a href="/2020/07/13/mysql-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" title="mysql 主从复制">mysql 主从复制</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2022</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">startanew @ 小小程序员</span>
+  </div>
+  <div class="count">
+    <span class="post-meta-item-icon">
+      <i class="ic i-chart-area"></i>
+    </span>
+    <span title="站点总字数">288k 字</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="ic i-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:22</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2021/07/25/k8s  kubeadmin安装/',
+    favicon: {
+      show: "（●´3｀●）",
+      hide: "(´Д｀)"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
