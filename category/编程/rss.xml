@@ -17,19 +17,19 @@
         <category>docker</category>
         <category>dos命令</category>
         <category>git</category>
+        <category>other</category>
         <category>android</category>
         <category>maven</category>
         <category>mysql</category>
         <category>spring-sceurity</category>
         <category>webrtc</category>
+        <category>tinc</category>
+        <category>linux</category>
+        <category>云真机</category>
         <category>员工关系管理</category>
         <category>近代史</category>
         <category>工作分析</category>
         <category>树莓派</category>
-        <category>tinc</category>
-        <category>other</category>
-        <category>云真机</category>
-        <category>linux</category>
         <item>
             <guid isPermalink="true">http://www.startanew.cn/2022/05/10/ubuntu%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4/</guid>
             <title>ubuntu修改系统时间</title>
@@ -199,8 +199,7 @@
 &lt;p&gt;gcc -I java 目录 \include -I java 目录 \include\win32 -shared -Wl,-kill-at -s -o hello.dll  c 文件&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;java调用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#java调用&#34;&gt;#&lt;/a&gt; java 调用&lt;/h3&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;System.loadLibrary(&lt;span class=&#34;string&#34;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
- ]]></description>
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;System.loadLibrary(&lt;span class=&#34;string&#34;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
         </item>
         <item>
             <guid isPermalink="true">http://www.startanew.cn/2020/12/31/JavaScript%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96/</guid>

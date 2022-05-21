@@ -14,19 +14,19 @@
     <category term="docker" />
     <category term="dos命令" />
     <category term="git" />
+    <category term="other" />
     <category term="android" />
     <category term="maven" />
     <category term="mysql" />
     <category term="spring-sceurity" />
     <category term="webrtc" />
+    <category term="tinc" />
+    <category term="linux" />
+    <category term="云真机" />
     <category term="员工关系管理" />
     <category term="近代史" />
     <category term="工作分析" />
     <category term="树莓派" />
-    <category term="tinc" />
-    <category term="other" />
-    <category term="云真机" />
-    <category term="linux" />
     <entry>
         <id>http://www.startanew.cn/2021/06/05/js%E5%AE%9E%E7%8E%B0%E6%88%AA%E5%8F%96%E8%A7%86%E9%A2%91%E5%B0%81%E9%9D%A2%E5%8A%9F%E8%83%BD/</id>
         <title>js实现截取视频封面功能</title>

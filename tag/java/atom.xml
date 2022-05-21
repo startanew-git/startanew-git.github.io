@@ -14,19 +14,19 @@
     <category term="docker" />
     <category term="dos命令" />
     <category term="git" />
+    <category term="other" />
     <category term="android" />
     <category term="maven" />
     <category term="mysql" />
     <category term="spring-sceurity" />
     <category term="webrtc" />
+    <category term="tinc" />
+    <category term="linux" />
+    <category term="云真机" />
     <category term="员工关系管理" />
     <category term="近代史" />
     <category term="工作分析" />
     <category term="树莓派" />
-    <category term="tinc" />
-    <category term="other" />
-    <category term="云真机" />
-    <category term="linux" />
     <entry>
         <id>http://www.startanew.cn/2021/11/27/%E6%8E%A5%E5%85%A5%E6%94%AF%E4%BB%98%E5%AE%9D%E4%B8%8E%E5%BE%AE%E4%BF%A1(%E6%B2%99%E7%AE%B1%E7%8E%AF%E5%A2%83)/</id>
         <title>接入支付宝与微信(沙箱环境)</title>
@@ -85,8 +85,7 @@
 &lt;p&gt;gcc -I java 目录 \include -I java 目录 \include\win32 -shared -Wl,-kill-at -s -o hello.dll  c 文件&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;java调用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#java调用&#34;&gt;#&lt;/a&gt; java 调用&lt;/h3&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;System.loadLibrary(&lt;span class=&#34;string&#34;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;System.loadLibrary(&lt;span class=&#34;string&#34;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="java" />
         <updated>2021-04-01T12:24:07.000Z</updated>
     </entry>

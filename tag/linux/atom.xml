@@ -14,19 +14,19 @@
     <category term="docker" />
     <category term="dos命令" />
     <category term="git" />
+    <category term="other" />
     <category term="android" />
     <category term="maven" />
     <category term="mysql" />
     <category term="spring-sceurity" />
     <category term="webrtc" />
+    <category term="tinc" />
+    <category term="linux" />
+    <category term="云真机" />
     <category term="员工关系管理" />
     <category term="近代史" />
     <category term="工作分析" />
     <category term="树莓派" />
-    <category term="tinc" />
-    <category term="other" />
-    <category term="云真机" />
-    <category term="linux" />
     <entry>
         <id>http://www.startanew.cn/2022/05/10/ubuntu%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4/</id>
         <title>ubuntu修改系统时间</title>

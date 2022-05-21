@@ -14,19 +14,19 @@
     <category term="docker" />
     <category term="dos命令" />
     <category term="git" />
+    <category term="other" />
     <category term="android" />
     <category term="maven" />
     <category term="mysql" />
     <category term="spring-sceurity" />
     <category term="webrtc" />
+    <category term="tinc" />
+    <category term="linux" />
+    <category term="云真机" />
     <category term="员工关系管理" />
     <category term="近代史" />
     <category term="工作分析" />
     <category term="树莓派" />
-    <category term="tinc" />
-    <category term="other" />
-    <category term="云真机" />
-    <category term="linux" />
     <entry>
         <id>http://www.startanew.cn/2021/11/21/jasypt-spring-boot%20%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/</id>
         <title>jasypt-spring-boot 简单使用</title>

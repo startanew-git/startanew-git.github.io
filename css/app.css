@@ -212,6 +212,12 @@
 .grey {
   color: var(--color-grey);
 }
+.i-cloud:before {
+  content: "\e659";
+}
+.i-bilibili:before {
+  content: "\e652";
+}
 .i-volume-off:before,
 .player-info .volume.off::before {
   content: "\e61e";
@@ -1873,7 +1879,8 @@ main >.inner {
   background: var(--text-color);
   box-shadow: 0rem 0rem 0.0625rem var(--grey-9-a1);
 }
-#nav.show .item.active a {
+#nav.show .item.active > a,
+#nav.show .item.expand > a {
   color: var(--color-aqua);
   opacity: 1;
 }
@@ -2461,6 +2468,9 @@ main >.inner {
   box-shadow: 0 0 0.75rem var(--color-pink);
   color: var(--grey-0);
 }
+.overview .menu .item.active .item {
+  color: currentColor;
+}
 .overview .menu .item.expand {
   background-color: rgba(0,0,0,0.05);
 }
@@ -2984,8 +2994,6 @@ main >.inner {
   text-align: right;
 }
 .md p:last-child,
-.md ul:last-child,
-.md ol:last-child,
 .md table:last-child,
 .md pre:last-child,
 .md blockquote:last-child,
@@ -2993,6 +3001,14 @@ main >.inner {
 .md .tabs:last-child,
 .md .links:last-child {
   margin-bottom: 0;
+}
+.md ul ul,
+.md dd ul,
+.md ol ul,
+.md ul ol,
+.md dd ol,
+.md ol ol {
+  margin-top: 0;
 }
 .md a {
   color: var(--primary-color);
@@ -3084,13 +3100,15 @@ main >.inner {
 .md blockquote ul {
   margin: 0.625rem 0 !important;
 }
-.md blockquote ul li::before {
+.md blockquote ul > li::before {
   width: 0.375rem !important;
   height: 0.375rem !important;
   top: 0.6875rem !important;
 }
-.md blockquote p {
-  margin: 0 !important;
+.md blockquote p:last-child,
+.md blockquote ol:last-child,
+.md blockquote ul:last-child {
+  margin-bottom: 0 !important;
 }
 .md >blockquote {
   border-left-color: var(--primary-color);
@@ -3387,10 +3405,6 @@ main >.inner {
   position: absolute;
   bottom: 0;
   right: 0;
-  transform-style: preserve-3d;
-  transform: translateZ(2rem);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   padding: 0.3rem 1rem;
   border-radius: 1rem 0;
   color: var(--grey-0);
@@ -3400,10 +3414,6 @@ main >.inner {
   position: absolute;
   display: block;
   content: '';
-  transform-style: preserve-3d;
-  transform: translateZ(-2rem);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
   height: calc(100% - 1rem);
   width: calc(100% - 1rem);
   border-radius: 5rem;
@@ -3417,6 +3427,18 @@ main >.inner {
 }
 .index.wrap .btn:hover::before {
   transform: translateZ(-2.5rem);
+}
+.index.wrap .active .btn {
+  transform-style: preserve-3d;
+  transform: translateZ(2rem);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+.index.wrap .active .btn::before {
+  transform-style: preserve-3d;
+  transform: translateZ(-2rem);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 .index.wrap .meta {
   font-size: 0.8125em;
@@ -4852,12 +4874,12 @@ code,
   transition: all 0.2s ease-in-out 0s;
 }
 .md li p {
-  margin: 0 0 0.5em;
+  margin: 0;
 }
 .md ul,
 .md ol,
 .md dl {
-  margin: 0 0 0.8em;
+  margin: 0.5em 0 0.5em;
   padding: 0.1em 0.2em 0.1em 1.4em;
 }
 .md ul > li::before,
@@ -4870,10 +4892,6 @@ code,
   border-radius: 50%;
   top: 0.85em;
   left: -1em;
-}
-.md ul > li.ruby::before,
-.md dl dt.ruby::before {
-  top: 1.25em;
 }
 .md ul > li:hover::before,
 .md dl dt:hover::before {
@@ -4897,9 +4915,6 @@ code,
   background: var(--primary-color);
   color: var(--grey-1);
   cursor: pointer;
-}
-.md ol >li.ruby::before {
-  top: 0.3em;
 }
 .md ol >li:hover::before {
   color: var(--grey-1);
@@ -4946,14 +4961,17 @@ code,
   background: var(--grey-1);
   border: 1px solid var(--primary-color);
 }
-.md li ol > li::before {
+.md li ol > li::before,
+.md dd ol > li::before {
   content: counter(counter) ".";
   background: none;
   color: var(--primary-color);
   font-size: 1em;
   line-height: 1;
+  width: auto;
 }
-.md li ol > li:hover::before {
+.md li ol > li:hover::before,
+.md dd ol > li:hover::before {
   background: none;
   color: var(--color-pink);
 }
@@ -4993,9 +5011,6 @@ code,
   border: none !important;
   font-size: 1em;
 }
-.md ol>li.quiz.ruby::before {
-  top: 0.5rem;
-}
 .md ol>li.quiz >p {
   margin: 0;
   cursor: pointer;
@@ -5005,6 +5020,9 @@ code,
   font-size: 0.75em;
   color: var(--grey-4);
   margin: auto 0.3125rem;
+}
+.md ol>li.quiz.mistake >p:first-child::before {
+  color: var(--primary-color);
 }
 .md ol>li.quiz .gap {
   display: inline-block;
@@ -5407,7 +5425,7 @@ span.label {
 }
 .md .note ol li:before,
 .md details ol li:before {
-  background: var(--note-text) !important;
+  background: var(--note-text, var(--primary-color)) !important;
   width: 0.8rem;
   height: 0.8rem;
   font-size: 0.45rem;

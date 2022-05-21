@@ -17,19 +17,19 @@
         <category>docker</category>
         <category>dos命令</category>
         <category>git</category>
+        <category>other</category>
         <category>android</category>
         <category>maven</category>
         <category>mysql</category>
         <category>spring-sceurity</category>
         <category>webrtc</category>
+        <category>tinc</category>
+        <category>linux</category>
+        <category>云真机</category>
         <category>员工关系管理</category>
         <category>近代史</category>
         <category>工作分析</category>
         <category>树莓派</category>
-        <category>tinc</category>
-        <category>other</category>
-        <category>云真机</category>
-        <category>linux</category>
         <item>
             <guid isPermalink="true">http://www.startanew.cn/2021/12/11/%E8%A7%A3%E5%86%B3%E5%AE%89%E5%8D%93Socketio%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5python-socketio/</guid>
             <title>解决安卓Socketio无法连接python-socketio</title>
